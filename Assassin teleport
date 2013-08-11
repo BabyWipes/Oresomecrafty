@@ -24,16 +24,19 @@ public class Assassin implements Listener
 		Player p = e.getPlayer();
 		Location l = p.getLocation();
 		PlayerInventory pi = p.getInventory();
-		if(e.getAction() == Action.RIGHT_CLICK_AIR)
+		if(pi.getHelmet().getTypeId() == 302 && pi.getChestplate().getTypeId() == 303 
+				&& pi.getLeggings().getTypeId() == 304 && pi.getBoots().getTypeId() == 305)
 		{
-			if(p.getInventory().getItemInHand().getTypeId() == 258 || 
-					p.getInventory().getItemInHand().getTypeId() == 271 ||
-					p.getInventory().getItemInHand().getTypeId() == 275 ||
-					p.getInventory().getItemInHand().getTypeId() == 279 ||
-					p.getInventory().getItemInHand().getTypeId() == 286){
-				if(pi.getHelmet().getTypeId() == 302 && pi.getChestplate().getTypeId() == 303 
-						&& pi.getLeggings().getTypeId() == 304 && pi.getBoots().getTypeId() == 305)
-				{
+			p.setSneaking(true);
+			if(e.getAction() == Action.RIGHT_CLICK_AIR)
+			{
+
+				if(p.getInventory().getItemInHand().getTypeId() == 258 || 
+						p.getInventory().getItemInHand().getTypeId() == 271 ||
+						p.getInventory().getItemInHand().getTypeId() == 275 ||
+						p.getInventory().getItemInHand().getTypeId() == 279 ||
+						p.getInventory().getItemInHand().getTypeId() == 286){
+
 					Block targetBlock = p.getTargetBlock(null, 50);
 					Location blockLoc = targetBlock.getLocation();
 					double bx = blockLoc.getX(); 
