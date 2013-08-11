@@ -3,6 +3,7 @@ package me.yuzko.mc.base;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -61,15 +62,36 @@ public class Assassin implements Listener
 					}
 				}
 			}
-			else {
-				if(p.getInventory().getItemInHand().getTypeId() == 290 || 
-						p.getInventory().getItemInHand().getTypeId() == 291 ||
-						p.getInventory().getItemInHand().getTypeId() == 292 ||
-						p.getInventory().getItemInHand().getTypeId() == 293 ||
-						p.getInventory().getItemInHand().getTypeId() == 294){
-					p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 120, 3));
+			else 
+				if(e.getAction() == Action.RIGHT_CLICK_AIR)
+				{
+					if(p.getInventory().getItemInHand().getTypeId() == 290 || 
+							p.getInventory().getItemInHand().getTypeId() == 291 ||
+							p.getInventory().getItemInHand().getTypeId() == 292 ||
+							p.getInventory().getItemInHand().getTypeId() == 293 ||
+							p.getInventory().getItemInHand().getTypeId() == 294){
+						p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 120, 3));
+						p.sendMessage(ChatColor.BLUE + "#Ability: " + ChatColor.YELLOW + "You used " + ChatColor.GOLD + "Rush");
+
+					}
 				}
-			}
+				else
+					if(e.getAction() == Action.RIGHT_CLICK_AIR)
+					{
+						if(p.getInventory().getItemInHand().getTypeId() == 267 || 
+								p.getInventory().getItemInHand().getTypeId() == 268 ||
+								p.getInventory().getItemInHand().getTypeId() == 272 ||
+								p.getInventory().getItemInHand().getTypeId() == 276 ||
+								p.getInventory().getItemInHand().getTypeId() == 283)
+						{
+							for (Player players : Bukkit.getOnlinePlayers())
+                            {
+                                p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 60, 3));
+                                p.sendMessage(ChatColor.BLUE + "#Ability:" + ChatColor.YELLOW + " You used " + ChatColor.GOLD + "Hidden");
+                            }
+						}
+					}
+
 		}
 	}
 
